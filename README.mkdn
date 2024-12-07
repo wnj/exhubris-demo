@@ -1,0 +1,68 @@
+# Standalone Hubris Project Demo
+
+This is a simple standalone firmware application built using Hubris, without
+having to include either Hubris or its build tools in the repo. This serves as a
+proof of concept for the [exhubris project], which tries to make Hubris useful
+to more people.
+
+## What's in this repo
+
+The main files are:
+
+- `app.kdl`: defines a firmware application. You could have more than one of
+  these to generate different images.
+
+- `hubris-env.toml`: marks a directory as the root of a Hubris project, and
+  specifies the pinned version of the build tools that the project wants to use.
+  This is similar to a `rust-toolchain.toml` file.
+
+- `rust-toolchain.toml` (for `rustup`): pins the toolchain revision used in the
+  project, to aid in reproduceability.
+
+- `pong`: a simple custom task.
+
+- `Cargo.toml`: explains where to find the code for `pong`. Exhubris projects
+  are currently required to be Cargo projects, but I hope to loosen this in the
+  future. It isn't _much_ of a limitation since usually you want at least some
+  custom code.
+
+- `Cargo.lock`: pins all the transitive dependencies that can be reached from
+  `Cargo.toml`, to aid in reproduceability.
+
+There are currently some additional files in the repo, which I hope to render
+unnecessary eventually:
+
+- `chips/*.kdl`: definitions of the SoCs used. It needs to be possible to
+  reference these from an external source, so that everyone doesn't wind up
+  copying them into their repo.
+
+## How to build
+
+Building is very slightly annoying right now because the tools are influx.
+
+First, you will need `hubake`, the Hubris build tool. Install it thus:
+
+```
+cargo install --git https://github.com/cbiffle/exhubris hubake --locked
+```
+
+(The intent is that you should not need to _update_ `hubake` after installing
+it, because it serves as a façade for the real tools. But it's early days, so
+you may need to update it later.)
+
+Next, in this repo, run:
+
+```
+hubake build app.kdl
+```
+
+This will produce some binaries in a working directory (`.work/demo/final`). To
+get a useful flashable output, you currently need to run an additional command:
+
+```
+hubake pack-hex .work/demo/final output.hex
+```
+
+...which will produce an output.hex file suitable for flashing with openocd.
+
+[exhubris project]: https://github.com/cbiffle/exhubris/

@@ -1,0 +1,7 @@
+[package]
+name = "pong"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+userlib = {git = "https://github.com/cbiffle/exhubris", rev="4678213fc010e7c49d883ddbcbf8c4961a966279", features = ["no-panic"]}

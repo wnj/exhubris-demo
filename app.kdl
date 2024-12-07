@@ -1,0 +1,43 @@
+// Demo Application Definition
+
+// App name is used for output files etc. It must be the first non-blank
+// non-comment line in the file.
+app "demo"
+
+// Currently the board information is inlined. It would be nice to refer to an
+// external file, like we already do for chip definitions.
+board "nucleo-g031k8" {
+    chip "stm32g031k8"
+}
+
+// Instructions for building the kernel.
+kernel {
+    // We'll pull in a kernel definition from exhubris's git repo.
+    git-crate {
+        repo "https://github.com/cbiffle/exhubris/"
+        package "kernel-generic-stm32g031"
+        rev "91202fdc32e66467eeff0ecd88dc5c71727c1be8"
+    }
+    // The kernel itself should provide this information eventually, but for now
+    // we have to state it:
+    stack-size 544
+}
+
+// IPC server. This is the only code that actually lives in this repo.
+task "pong" {
+    workspace-crate "pong"
+    stack-size 160
+    priority 0
+}
+
+// Idle task. Every application needs one, few applications want to write their
+// own. We pull in a standard one from git:
+task "idle" {
+    git-crate {
+        repo "https://github.com/cbiffle/exhubris/"
+        package "idle"
+        rev "91202fdc32e66467eeff0ecd88dc5c71727c1be8"
+    }
+    stack-size 32
+    priority 1
+}

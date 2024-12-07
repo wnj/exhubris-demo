@@ -1,0 +1,6 @@
+# Tells hubake what version of the tools we expect.
+
+[system]
+source = "git"
+repo = "https://github.com/cbiffle/exhubris"
+rev = "91202fdc32e66467eeff0ecd88dc5c71727c1be8"

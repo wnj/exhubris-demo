@@ -16,7 +16,7 @@ kernel {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "kernel-generic-stm32g031"
-        rev "91202fdc32e66467eeff0ecd88dc5c71727c1be8"
+        rev "ad9e730e868e4c65ab5b82f3d10c2193649e9a84"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
@@ -36,7 +36,7 @@ task "idle" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "idle"
-        rev "91202fdc32e66467eeff0ecd88dc5c71727c1be8"
+        rev "ad9e730e868e4c65ab5b82f3d10c2193649e9a84"
     }
     stack-size 32
     priority 1

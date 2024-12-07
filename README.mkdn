@@ -10,7 +10,8 @@ to more people.
 The main files are:
 
 - `app.kdl`: defines a firmware application. You could have more than one of
-  these to generate different images.
+  these to generate different images. In this case it specifies how to build the
+  kernel, and brings in some task crates.
 
 - `hubris-env.toml`: marks a directory as the root of a Hubris project, and
   specifies the pinned version of the build tools that the project wants to use.
@@ -19,12 +20,12 @@ The main files are:
 - `rust-toolchain.toml` (for `rustup`): pins the toolchain revision used in the
   project, to aid in reproduceability.
 
-- `pong`: a simple custom task.
+- `pong` and `ping`: simple custom tasks that interact over IPC.
 
-- `Cargo.toml`: explains where to find the code for `pong`. Exhubris projects
-  are currently required to be Cargo projects, but I hope to loosen this in the
-  future. It isn't _much_ of a limitation since usually you want at least some
-  custom code.
+- `Cargo.toml`: explains where to find the code for `ping` and `pong`, and
+  centralizes some dependency declarations. Exhubris projects are currently
+  required to be Cargo projects, but I hope to loosen this in the future. It
+  isn't _much_ of a limitation since usually you want at least some custom code.
 
 - `Cargo.lock`: pins all the transitive dependencies that can be reached from
   `Cargo.toml`, to aid in reproduceability.

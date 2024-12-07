@@ -16,18 +16,57 @@ kernel {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "kernel-generic-stm32g031"
-        rev "ad9e730e868e4c65ab5b82f3d10c2193649e9a84"
+        rev "46146e27d83e8b2590be3120608254065e43f886"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
     stack-size 544
 }
 
+// Supervisor task. Every nontrivial application needs one. The exhubris
+// minisuper implementation is good for most simple systems.
+task "super" {
+    git-crate {
+        repo "https://github.com/cbiffle/exhubris/"
+        package "minisuper"
+        rev "46146e27d83e8b2590be3120608254065e43f886"
+    }
+    priority 0
+
+    // Eventually, tasks should be able to indicate their stack requirement
+    // somehow, but for now we have to state it:
+    stack-size 128
+}
+
+// System peripheral sharing for G0. This lets other tasks conveniently access
+// GPIO and clock trees.
+task "sys" {
+    git-crate {
+        repo "https://github.com/cbiffle/exhubris/"
+        package "drv-stm32g0-sys"
+        rev "46146e27d83e8b2590be3120608254065e43f886"
+    }
+    stack-size 256
+    priority 1
+    features "chip-stm32g031k8"
+    uses-peripheral "rcc"
+    uses-peripheral "gpios"
+}
+
 // IPC server. This is the only code that actually lives in this repo.
 task "pong" {
     workspace-crate "pong"
     stack-size 160
-    priority 0
+    priority 2
+}
+
+// IPC generator.
+task "ping" {
+    workspace-crate "ping"
+    stack-size 256
+    priority 3
+    uses-task "pong"
+    uses-task "sys"
 }
 
 // Idle task. Every application needs one, few applications want to write their
@@ -36,8 +75,8 @@ task "idle" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "idle"
-        rev "ad9e730e868e4c65ab5b82f3d10c2193649e9a84"
+        rev "46146e27d83e8b2590be3120608254065e43f886"
     }
     stack-size 32
-    priority 1
+    priority 4
 }

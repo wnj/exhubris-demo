@@ -1,3 +1,9 @@
 [workspace]
 resolver = "2"
-members = ["pong"]
+members = ["pong", "ping"]
+
+[workspace.dependencies]
+userlib = {git = "https://github.com/cbiffle/exhubris", rev="46146e27d83e8b2590be3120608254065e43f886"}
+hubris-task-slots = {git = "https://github.com/cbiffle/exhubris", rev="46146e27d83e8b2590be3120608254065e43f886"}
+drv-stm32g0-sys-api = {git = "https://github.com/cbiffle/exhubris", rev="46146e27d83e8b2590be3120608254065e43f886"}
+

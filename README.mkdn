@@ -66,4 +66,52 @@ hubake pack-hex .work/demo/final output.hex
 
 ...which will produce an output.hex file suitable for flashing with openocd.
 
+## How to actually run this on a board
+
+The demo in this repo is currently intended for the [ST NUCLEO-G031K8
+board][nuc], which is currently cheaply available in most places for USD$11 or
+less. You need one of those boards, and a reasonably recent copy of OpenOCD (I'm
+testing on 0.12, but 0.11 will be fine).
+
+Here's how to flash the board, from scratch. Some of these steps are repeated
+from the previous section. You can skip them if you want.
+
+```
+cargo install --git https://github.com/cbiffle/exhubris hubake --locked
+
+git clone https://github.com/cbiffle/exhubris-demo
+cd exhubris-demo
+
+hubake build app.kdl
+hubake pack-hex .work/demo/final output.hex
+
+openocd -f openocd.cfg -c "program output.hex verify reset exit"
+```
+
+The green LED (LD3) on the board should begin blinking at 1Hz.
+
+If you'd like to attach a debugger, you'll need `arm-none-eabi-gdb` or
+equivalent available. From the repo, add the `-g` flag to `pack-hex` to produce
+a `gdbconfig`:
+
+```
+hubake pack-hex .work/demo/final output.hex -g gdbconfig
+```
+
+And then in one terminal, start openocd without the `reset` and `exit` flags:
+
+```
+openocd -f openocd.cfg -c "program output.hex verify"
+```
+
+And in a second terminal, run:
+
+```
+arm-none-eabi-gdb -x gdbconfig
+```
+
+At the GDB prompt, type `continue` or `c` and press enter to start the firmware,
+Ctrl-C to interrupt it.
+
+[nuc]: https://www.st.com/en/evaluation-tools/nucleo-g031k8.html
 [exhubris project]: https://github.com/cbiffle/exhubris/

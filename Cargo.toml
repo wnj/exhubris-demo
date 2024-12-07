@@ -3,7 +3,10 @@ resolver = "2"
 members = ["pong", "ping"]
 
 [workspace.dependencies]
-userlib = {git = "https://github.com/cbiffle/exhubris", rev="46146e27d83e8b2590be3120608254065e43f886"}
-hubris-task-slots = {git = "https://github.com/cbiffle/exhubris", rev="46146e27d83e8b2590be3120608254065e43f886"}
-drv-stm32g0-sys-api = {git = "https://github.com/cbiffle/exhubris", rev="46146e27d83e8b2590be3120608254065e43f886"}
+userlib = {git = "https://github.com/cbiffle/exhubris", rev="6529e3b1e62a59247d31a26a2b63a36d69919db0"}
+hubris-task-slots = {git = "https://github.com/cbiffle/exhubris", rev="6529e3b1e62a59247d31a26a2b63a36d69919db0"}
+drv-stm32g0-sys-api = {git = "https://github.com/cbiffle/exhubris", rev="6529e3b1e62a59247d31a26a2b63a36d69919db0"}
 
+[profile.release]
+debug = true
+lto = true

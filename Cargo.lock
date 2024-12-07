@@ -277,7 +277,7 @@ dependencies = [
 [[package]]
 name = "drv-stm32g0-sys-api"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=46146e27d83e8b2590be3120608254065e43f886#46146e27d83e8b2590be3120608254065e43f886"
+source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
 dependencies = [
  "hubpack",
  "hubris-build",
@@ -382,7 +382,7 @@ dependencies = [
 [[package]]
 name = "hubris-build"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=46146e27d83e8b2590be3120608254065e43f886#46146e27d83e8b2590be3120608254065e43f886"
+source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
 dependencies = [
  "build-kconfig",
  "cargo_metadata",
@@ -412,7 +412,7 @@ dependencies = [
 [[package]]
 name = "hubris-task-slots"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=46146e27d83e8b2590be3120608254065e43f886#46146e27d83e8b2590be3120608254065e43f886"
+source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
 dependencies = [
  "ron",
  "userlib",
@@ -1062,7 +1062,7 @@ checksum = "1fc81956842c57dac11422a97c3b8195a1ff727f06e85c84ed2e8aa277c9a0fd"
 [[package]]
 name = "userlib"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=46146e27d83e8b2590be3120608254065e43f886#46146e27d83e8b2590be3120608254065e43f886"
+source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
 dependencies = [
  "bitflags",
  "cfg-if",

@@ -16,7 +16,7 @@ kernel {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "kernel-generic-stm32g031"
-        rev "46146e27d83e8b2590be3120608254065e43f886"
+        rev "6529e3b1e62a59247d31a26a2b63a36d69919db0"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
@@ -29,7 +29,7 @@ task "super" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "minisuper"
-        rev "46146e27d83e8b2590be3120608254065e43f886"
+        rev "6529e3b1e62a59247d31a26a2b63a36d69919db0"
     }
     priority 0
 
@@ -44,7 +44,7 @@ task "sys" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "drv-stm32g0-sys"
-        rev "46146e27d83e8b2590be3120608254065e43f886"
+        rev "6529e3b1e62a59247d31a26a2b63a36d69919db0"
     }
     stack-size 256
     priority 1
@@ -75,7 +75,7 @@ task "idle" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "idle"
-        rev "46146e27d83e8b2590be3120608254065e43f886"
+        rev "6529e3b1e62a59247d31a26a2b63a36d69919db0"
     }
     stack-size 32
     priority 4

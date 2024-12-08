@@ -1,0 +1,10 @@
+// Very basic IPC interface.
+
+interface "pong"
+
+method "pong" {
+    doc "Goes bing."
+
+    operation 0
+    auto-retry
+}

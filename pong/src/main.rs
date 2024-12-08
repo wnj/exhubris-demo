@@ -1,25 +1,42 @@
+//! A really basic IPC server that also occasionally crashes itself.
+
 #![no_std]
 #![no_main]
 
-use userlib::{sys_panic, sys_recv_msg_open, sys_reply, ResponseCode};
-
-#[no_mangle]
-static mut MESSAGE_COUNT: u32 = 0;
-
 #[export_name = "main"]
 fn main() -> ! {
-    let mut buffer = [core::mem::MaybeUninit::uninit(); 32];
+    // Space for incoming messages; the `PONG_BUFFER_SIZE` constant is generated
+    // (see below).
+    let mut buffer = [core::mem::MaybeUninit::uninit(); PONG_BUFFER_SIZE];
+    // Placeholder server state struct.
+    let mut server = Server { message_count: 0 };
+
     loop {
-        let rm = sys_recv_msg_open(&mut buffer);
-        unsafe {
-            MESSAGE_COUNT = MESSAGE_COUNT.wrapping_add(1);
-        }
-        sys_reply(rm.sender, ResponseCode::SUCCESS, &[]);
+        idyll_runtime::dispatch(&mut server, &mut buffer);
 
         // Periodically crash this task to test both supervisor restarts, and
         // IPC client handling of dead codes.
-        if unsafe { MESSAGE_COUNT } % 10 == 0 {
-            sys_panic(b"");
+        if server.message_count % 10 == 0 {
+            userlib::sys_panic(b"");
         }
     }
 }
+
+// In a fancier server, this would contain application state.
+struct Server {
+    message_count: usize,
+}
+
+impl Pong for Server {
+    fn pong(
+        &mut self,
+        _: &userlib::Message<'_>,
+    ) -> Result<(), userlib::ReplyFaultReason> {
+        self.message_count = self.message_count.wrapping_add(1);
+        Ok(())
+    }
+}
+
+// This loads in the generated server support code produced by our build.rs and
+// idyll.
+include!(concat!(env!("OUT_DIR"), "/generated_server.rs"));

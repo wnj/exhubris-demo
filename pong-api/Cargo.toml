@@ -1,11 +1,11 @@
 [package]
-name = "pong"
+name = "pong-api"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-idyll_runtime.workspace = true
-userlib = {workspace = true, features = ["no-panic"]}
+hubpack = "0.1.2"
+userlib.workspace = true
 
 [build-dependencies]
 hubris-build.workspace = true

@@ -277,7 +277,7 @@ dependencies = [
 [[package]]
 name = "drv-stm32g0-sys-api"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
+source = "git+https://github.com/cbiffle/exhubris?rev=1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94#1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94"
 dependencies = [
  "hubpack",
  "hubris-build",
@@ -382,7 +382,7 @@ dependencies = [
 [[package]]
 name = "hubris-build"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
+source = "git+https://github.com/cbiffle/exhubris?rev=1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94#1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94"
 dependencies = [
  "build-kconfig",
  "cargo_metadata",
@@ -412,10 +412,19 @@ dependencies = [
 [[package]]
 name = "hubris-task-slots"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
+source = "git+https://github.com/cbiffle/exhubris?rev=1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94#1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94"
 dependencies = [
  "ron",
  "userlib",
+]
+
+[[package]]
+name = "idyll_runtime"
+version = "0.1.0"
+source = "git+https://github.com/cbiffle/exhubris?rev=1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94#1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94"
+dependencies = [
+ "userlib",
+ "zerocopy",
 ]
 
 [[package]]
@@ -646,6 +655,7 @@ version = "0.1.0"
 dependencies = [
  "drv-stm32g0-sys-api",
  "hubris-task-slots",
+ "pong-api",
  "userlib",
 ]
 
@@ -659,6 +669,17 @@ checksum = "b4596b6d070b27117e987119b4dac604f3c58cfb0b191112e24771b2faeac1a6"
 name = "pong"
 version = "0.1.0"
 dependencies = [
+ "hubris-build",
+ "idyll_runtime",
+ "userlib",
+]
+
+[[package]]
+name = "pong-api"
+version = "0.1.0"
+dependencies = [
+ "hubpack",
+ "hubris-build",
  "userlib",
 ]
 
@@ -1062,7 +1083,7 @@ checksum = "1fc81956842c57dac11422a97c3b8195a1ff727f06e85c84ed2e8aa277c9a0fd"
 [[package]]
 name = "userlib"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=6529e3b1e62a59247d31a26a2b63a36d69919db0#6529e3b1e62a59247d31a26a2b63a36d69919db0"
+source = "git+https://github.com/cbiffle/exhubris?rev=1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94#1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94"
 dependencies = [
  "bitflags",
  "cfg-if",
@@ -1199,3 +1220,23 @@ name = "windows_x86_64_msvc"
 version = "0.52.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "589f6da84c646204747d1270a2a5661ea66ed1cced2631d546fdfb155959f9ec"
+
+[[package]]
+name = "zerocopy"
+version = "0.8.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "67914ab451f3bfd2e69e5e9d2ef3858484e7074d63f204fd166ec391b54de21d"
+dependencies = [
+ "zerocopy-derive",
+]
+
+[[package]]
+name = "zerocopy-derive"
+version = "0.8.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7988d73a4303ca289df03316bc490e934accf371af6bc745393cf3c2c5c4f25d"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.90",
+]

@@ -67,6 +67,8 @@ task "ping" {
     priority 3
     uses-task "pong"
     uses-task "sys"
+
+    notification "timer"
 }
 
 // Idle task. Every application needs one, few applications want to write their

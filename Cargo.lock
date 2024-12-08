@@ -410,6 +410,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "hubris-notifications"
+version = "0.1.0"
+source = "git+https://github.com/cbiffle/exhubris?rev=1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94#1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94"
+dependencies = [
+ "convert_case",
+ "ron",
+ "userlib",
+]
+
+[[package]]
 name = "hubris-task-slots"
 version = "0.1.0"
 source = "git+https://github.com/cbiffle/exhubris?rev=1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94#1f237c0cfbdcd42f6ed5937ea7a93216e40b3b94"
@@ -654,6 +664,7 @@ name = "ping"
 version = "0.1.0"
 dependencies = [
  "drv-stm32g0-sys-api",
+ "hubris-notifications",
  "hubris-task-slots",
  "pong-api",
  "userlib",

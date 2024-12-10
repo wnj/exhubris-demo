@@ -5,7 +5,7 @@ having to include either Hubris or its build tools in the repo. This serves as a
 proof of concept for the [exhubris project], which tries to make Hubris useful
 to more people.
 
-## How to build and run
+## How to build
 
 First, you will need `hubake`, the (ex)Hubris build tool. Install it thus:
 

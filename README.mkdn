@@ -5,6 +5,37 @@ having to include either Hubris or its build tools in the repo. This serves as a
 proof of concept for the [exhubris project], which tries to make Hubris useful
 to more people.
 
+## How big is it?
+
+This is not the smallest possible Hubris application, but it's pretty small.
+This consists of five tasks that occupy 2 kiB of flash and 992 bytes of RAM.
+
+```
+ MEMORY  TASK          START         END       SIZE       LOST
+ flash   ping      0x8000120   0x80002ff  480 bytes    8 bytes
+ flash   sys       0x8000300   0x80006bf  960 bytes    4 bytes
+ flash   idle      0x80006c0   0x80006ff   64 bytes    4 bytes
+ flash   super     0x8000700   0x80007ff  256 bytes    4 bytes
+ flash   pong      0x8000800   0x800091f  288 bytes    0 bytes
+ flash   (total)                           2.00 KiB   20 bytes
+ ram     super    0x20000220  0x2000029f  128 bytes    0 bytes
+ ram     pong     0x200002a0  0x2000033f  160 bytes    0 bytes
+ ram     ping     0x20000340  0x2000043f  256 bytes    0 bytes
+ ram     idle     0x20000440  0x2000045f   32 bytes    0 bytes
+ ram     -pad-    0x20000460  0x200004ff  160 bytes  160 bytes
+ ram     sys      0x20000500  0x200005ff  256 bytes    0 bytes
+ ram     (total)                          992 bytes  160 bytes
+```
+
+On top of that, the kernel uses 10 kiB flash (plus 256 bytes for the vector
+table), and 544 bytes of RAM. So a total of 12 kiB flash, 1.5 kiB RAM.
+
+Even on the wee STM32G031K8, this is only 19% of flash and 19% of RAM. The rest
+is yours to play with.
+
+(This information may be out of date, run a build to see the current stats.)
+
+
 ## How to build
 
 First, you will need `hubake`, the (ex)Hubris build tool. Install it thus:

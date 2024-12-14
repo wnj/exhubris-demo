@@ -3,12 +3,12 @@ resolver = "2"
 members = ["pong", "ping", "pong-api"]
 
 [workspace.dependencies]
-userlib = {git = "https://github.com/cbiffle/exhubris", rev="c58193c4821800f1ad59f212b8625fa7c65d825d"}
-hubris-task-slots = {git = "https://github.com/cbiffle/exhubris", rev="c58193c4821800f1ad59f212b8625fa7c65d825d"}
-hubris-notifications = {git = "https://github.com/cbiffle/exhubris", rev="c58193c4821800f1ad59f212b8625fa7c65d825d"}
-hubris-build = {git = "https://github.com/cbiffle/exhubris", rev="c58193c4821800f1ad59f212b8625fa7c65d825d"}
-idyll_runtime = {git = "https://github.com/cbiffle/exhubris", rev="c58193c4821800f1ad59f212b8625fa7c65d825d"}
-drv-stm32g0-sys-api = {git = "https://github.com/cbiffle/exhubris", rev="c58193c4821800f1ad59f212b8625fa7c65d825d"}
+userlib = {git = "https://github.com/cbiffle/exhubris", rev="cae47f13844a080f8fac1bfae0d0a72176a90975"}
+hubris-task-slots = {git = "https://github.com/cbiffle/exhubris", rev="cae47f13844a080f8fac1bfae0d0a72176a90975"}
+hubris-notifications = {git = "https://github.com/cbiffle/exhubris", rev="cae47f13844a080f8fac1bfae0d0a72176a90975"}
+hubris-build = {git = "https://github.com/cbiffle/exhubris", rev="cae47f13844a080f8fac1bfae0d0a72176a90975"}
+idyll_runtime = {git = "https://github.com/cbiffle/exhubris", rev="cae47f13844a080f8fac1bfae0d0a72176a90975"}
+drv-stm32g0-sys-api = {git = "https://github.com/cbiffle/exhubris", rev="cae47f13844a080f8fac1bfae0d0a72176a90975"}
 
 [profile.release]
 debug = true

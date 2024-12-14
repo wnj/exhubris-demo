@@ -30,7 +30,7 @@ struct Server {
 impl Pong for Server {
     fn pong(
         &mut self,
-        _: &userlib::Message<'_>,
+        _: idyll_runtime::Meta,
     ) -> Result<(), userlib::ReplyFaultReason> {
         self.message_count = self.message_count.wrapping_add(1);
         Ok(())

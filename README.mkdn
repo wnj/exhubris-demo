@@ -27,10 +27,10 @@ This consists of five tasks that occupy 2 kiB of flash and 992 bytes of RAM.
  ram     (total)                          992 bytes  160 bytes
 ```
 
-On top of that, the kernel uses 10 kiB flash (plus 256 bytes for the vector
-table), and 544 bytes of RAM. So a total of 12 kiB flash, 1.5 kiB RAM.
+On top of that, the kernel uses 9.5 kiB flash (plus 256 bytes for the vector
+table), and 552 bytes of RAM. So a total of 11.5 kiB flash, 1.5 kiB RAM.
 
-Even on the wee STM32G031K8, this is only 19% of flash and 19% of RAM. The rest
+Even on the wee STM32G031K8, this is only 18% of flash and 19% of RAM. The rest
 is yours to play with.
 
 (This information may be out of date, run a build to see the current stats.)

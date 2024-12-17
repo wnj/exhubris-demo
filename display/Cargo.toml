@@ -1,0 +1,10 @@
+[package]
+name = "display"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+drv-stm32g0-sys-api.workspace = true
+hubris-notifications.workspace = true
+hubris-task-slots.workspace = true
+userlib = {workspace = true, features = ["no-panic"]}

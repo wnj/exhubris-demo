@@ -16,7 +16,7 @@ kernel {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "kernel-generic-stm32g031"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        rev "cae47f13844a080f8fac1bfae0d0a72176a90975"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
@@ -29,7 +29,7 @@ task "super" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "minisuper"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        rev "cae47f13844a080f8fac1bfae0d0a72176a90975"
     }
     priority 0
 
@@ -42,9 +42,9 @@ task "super" {
 // GPIO and clock trees.
 task "sys" {
     git-crate {
-        repo "https://github.com/cbiffle/exhubris/"
+        repo "https://github.com/wnj/exhubris/"
         package "drv-stm32g0-sys"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        rev "9c8132fd8f5e6a9462dc818904b5b76df9938e91"
     }
     stack-size 256
     priority 1
@@ -75,10 +75,12 @@ task "ping" {
 // own. We pull in a standard one from git:
 task "idle" {
     git-crate {
-        repo "https://github.com/cbiffle/exhubris/"
+        repo "https://github.com/wnj/exhubris/"
         package "idle"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        rev "9c8132fd8f5e6a9462dc818904b5b76df9938e91"
     }
     stack-size 32
     priority 4
+    // This makes Humility work a _lot_ better.
+    features "insomniac"
 }

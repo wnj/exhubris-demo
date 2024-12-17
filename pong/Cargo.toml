@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+hubpack = "0.1.2"
 idyll_runtime.workspace = true
 userlib = {workspace = true, features = ["no-panic"]}
 

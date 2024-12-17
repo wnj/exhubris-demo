@@ -3,4 +3,4 @@
 [system]
 source = "git"
 repo = "https://github.com/cbiffle/exhubris"
-rev = "598e8c500017c3b88b909c300a0fcf32735e213c"
+rev = "cae47f13844a080f8fac1bfae0d0a72176a90975"

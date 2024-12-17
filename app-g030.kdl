@@ -44,7 +44,7 @@ task "sys" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "drv-stm32g0-sys"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        rev "9c8132fd8f5e6a9462dc818904b5b76df9938e91"
     }
     stack-size 256
     priority 1
@@ -95,7 +95,7 @@ task "idle" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "idle"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        rev "9c8132fd8f5e6a9462dc818904b5b76df9938e91"
     }
     stack-size 32
     priority 4

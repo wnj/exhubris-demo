@@ -147,6 +147,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "blinky"
+version = "0.1.0"
+dependencies = [
+ "drv-stm32g0-sys-api",
+ "hubris-notifications",
+ "hubris-task-slots",
+ "userlib",
+]
+
+[[package]]
 name = "block-buffer"
 version = "0.10.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -450,6 +460,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "display"
+version = "0.1.0"
+dependencies = [
+ "drv-stm32g0-sys-api",
+ "hubris-notifications",
+ "hubris-task-slots",
+ "userlib",
+]
+
+[[package]]
 name = "displaydoc"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -463,7 +483,7 @@ dependencies = [
 [[package]]
 name = "drv-stm32g0-sys-api"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=598e8c500017c3b88b909c300a0fcf32735e213c#598e8c500017c3b88b909c300a0fcf32735e213c"
+source = "git+https://github.com/wnj/exhubris?rev=ff6753d25c607ab4d7cad8a326ea4a1f8d11657f#ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
 dependencies = [
  "hubpack",
  "hubris-build",
@@ -617,7 +637,7 @@ dependencies = [
 [[package]]
 name = "hubris-build"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=598e8c500017c3b88b909c300a0fcf32735e213c#598e8c500017c3b88b909c300a0fcf32735e213c"
+source = "git+https://github.com/wnj/exhubris?rev=ff6753d25c607ab4d7cad8a326ea4a1f8d11657f#ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
 dependencies = [
  "build-kconfig",
  "cargo_metadata",
@@ -652,7 +672,7 @@ dependencies = [
 [[package]]
 name = "hubris-notifications"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=598e8c500017c3b88b909c300a0fcf32735e213c#598e8c500017c3b88b909c300a0fcf32735e213c"
+source = "git+https://github.com/wnj/exhubris?rev=ff6753d25c607ab4d7cad8a326ea4a1f8d11657f#ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
 dependencies = [
  "convert_case",
  "ron",
@@ -662,12 +682,12 @@ dependencies = [
 [[package]]
 name = "hubris-region-alloc"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=598e8c500017c3b88b909c300a0fcf32735e213c#598e8c500017c3b88b909c300a0fcf32735e213c"
+source = "git+https://github.com/wnj/exhubris?rev=ff6753d25c607ab4d7cad8a326ea4a1f8d11657f#ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
 
 [[package]]
 name = "hubris-task-slots"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=598e8c500017c3b88b909c300a0fcf32735e213c#598e8c500017c3b88b909c300a0fcf32735e213c"
+source = "git+https://github.com/wnj/exhubris?rev=ff6753d25c607ab4d7cad8a326ea4a1f8d11657f#ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
 dependencies = [
  "ron",
  "userlib",
@@ -676,7 +696,7 @@ dependencies = [
 [[package]]
 name = "idyll_runtime"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=598e8c500017c3b88b909c300a0fcf32735e213c#598e8c500017c3b88b909c300a0fcf32735e213c"
+source = "git+https://github.com/wnj/exhubris?rev=ff6753d25c607ab4d7cad8a326ea4a1f8d11657f#ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
 dependencies = [
  "userlib",
  "zerocopy 0.8.13",
@@ -1588,7 +1608,7 @@ checksum = "1fc81956842c57dac11422a97c3b8195a1ff727f06e85c84ed2e8aa277c9a0fd"
 [[package]]
 name = "userlib"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=598e8c500017c3b88b909c300a0fcf32735e213c#598e8c500017c3b88b909c300a0fcf32735e213c"
+source = "git+https://github.com/wnj/exhubris?rev=ff6753d25c607ab4d7cad8a326ea4a1f8d11657f#ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
 dependencies = [
  "bitflags",
  "cfg-if",

@@ -6,17 +6,17 @@ app "demo"
 
 // Currently the board information is inlined. It would be nice to refer to an
 // external file, like we already do for chip definitions.
-board "nucleo-g031k8" {
-    chip "stm32g031k8"
+board "bare-metal-stm329030" {
+    chip "stm32g030k8"
 }
 
 // Instructions for building the kernel.
 kernel {
     // We'll pull in a kernel definition from exhubris's git repo.
     git-crate {
-        repo "https://github.com/cbiffle/exhubris/"
-        package "kernel-generic-stm32g031"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        repo "https://github.com/wnj/exhubris/"
+        package "kernel-generic-stm32g030"
+        rev "f6164652d1173caea2696515bed6177137319dd1"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
@@ -27,9 +27,9 @@ kernel {
 // minisuper implementation is good for most simple systems.
 task "super" {
     git-crate {
-        repo "https://github.com/cbiffle/exhubris/"
+        repo "https://github.com/wnj/exhubris/"
         package "minisuper"
-        rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
+        rev "f6164652d1173caea2696515bed6177137319dd1"
     }
     priority 0
 
@@ -42,13 +42,13 @@ task "super" {
 // GPIO and clock trees.
 task "sys" {
     git-crate {
-        repo "https://github.com/cbiffle/exhubris/"
+        repo "https://github.com/wnj/exhubris/"
         package "drv-stm32g0-sys"
         rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
     }
     stack-size 256
     priority 1
-    features "chip-stm32g031k8"
+    features "chip-stm32g030k8"
     uses-peripheral "rcc"
     uses-peripheral "gpios"
 }
@@ -71,11 +71,29 @@ task "ping" {
     notification "timer"
 }
 
+task "blinky" {
+    workspace-crate "blinky"
+    stack-size 160
+    priority 3
+    uses-task "sys"
+
+    notification "timer"
+}
+
+task "display" {
+    workspace-crate "display"
+    stack-size 256
+    priority 3
+    uses-task "sys"
+
+    notification "timer"
+}
+
 // Idle task. Every application needs one, few applications want to write their
 // own. We pull in a standard one from git:
 task "idle" {
     git-crate {
-        repo "https://github.com/cbiffle/exhubris/"
+        repo "https://github.com/wnj/exhubris/"
         package "idle"
         rev "ff6753d25c607ab4d7cad8a326ea4a1f8d11657f"
     }

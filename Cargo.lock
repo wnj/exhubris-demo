@@ -193,7 +193,7 @@ dependencies = [
 [[package]]
 name = "build-kconfig"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/hubris-fork.git?branch=cbiffle/exhubris-fixes#4388b347ff7dc315b1254b9fdfd056bfd64b33af"
+source = "git+https://github.com/cbiffle/hubris-fork.git?branch=cbiffle/exhubris-fixes#7c7390af466ebfec5c033fdc7123907c9ff1b86d"
 dependencies = [
  "bitflags",
  "serde",
@@ -508,7 +508,7 @@ dependencies = [
 [[package]]
 name = "drv-stm32g0-sys-api"
 version = "0.1.0"
-source = "git+https://github.com/wnj/exhubris?rev=9c8132fd8f5e6a9462dc818904b5b76df9938e91#9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
 dependencies = [
  "hubpack",
  "hubris-build",
@@ -662,7 +662,7 @@ dependencies = [
 [[package]]
 name = "hubris-build"
 version = "0.1.0"
-source = "git+https://github.com/wnj/exhubris?rev=9c8132fd8f5e6a9462dc818904b5b76df9938e91#9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
 dependencies = [
  "blake3",
  "build-kconfig",
@@ -696,9 +696,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "hubris-build-util"
+version = "0.1.0"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
+dependencies = [
+ "indexmap",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "hubris-notifications"
 version = "0.1.0"
-source = "git+https://github.com/wnj/exhubris?rev=9c8132fd8f5e6a9462dc818904b5b76df9938e91#9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
 dependencies = [
  "convert_case",
  "ron",
@@ -708,7 +718,7 @@ dependencies = [
 [[package]]
 name = "hubris-region-alloc"
 version = "0.1.0"
-source = "git+https://github.com/wnj/exhubris?rev=9c8132fd8f5e6a9462dc818904b5b76df9938e91#9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
 dependencies = [
  "serde",
 ]
@@ -716,7 +726,7 @@ dependencies = [
 [[package]]
 name = "hubris-task-slots"
 version = "0.1.0"
-source = "git+https://github.com/wnj/exhubris?rev=9c8132fd8f5e6a9462dc818904b5b76df9938e91#9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
 dependencies = [
  "ron",
  "userlib",
@@ -725,7 +735,7 @@ dependencies = [
 [[package]]
 name = "idyll_runtime"
 version = "0.1.0"
-source = "git+https://github.com/wnj/exhubris?rev=9c8132fd8f5e6a9462dc818904b5b76df9938e91#9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
 dependencies = [
  "userlib",
  "zerocopy 0.8.13",
@@ -1384,6 +1394,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
 
 [[package]]
+name = "stm32-metapac"
+version = "15.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "deabea56a8821dcea05d0109f3ab3135f31eb572444e5da203d06149c594c8c6"
+dependencies = [
+ "cortex-m",
+]
+
+[[package]]
 name = "strsim"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1606,6 +1625,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "42ff0bf0c66b8238c6f3b578df37d0b7848e55df8577b3f74f92a69acceeb825"
 
 [[package]]
+name = "uart-echo"
+version = "0.1.0"
+dependencies = [
+ "drv-stm32g0-sys-api",
+ "hubris-build",
+ "hubris-build-util",
+ "hubris-notifications",
+ "hubris-task-slots",
+ "serde_json",
+ "stm32-metapac",
+ "userlib",
+]
+
+[[package]]
 name = "unicode-ident"
 version = "1.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1638,7 +1671,7 @@ checksum = "1fc81956842c57dac11422a97c3b8195a1ff727f06e85c84ed2e8aa277c9a0fd"
 [[package]]
 name = "userlib"
 version = "0.1.0"
-source = "git+https://github.com/wnj/exhubris?rev=9c8132fd8f5e6a9462dc818904b5b76df9938e91#9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+source = "git+https://github.com/wnj/exhubris?rev=d0f166645fad45d2de65921cf14e021d85aa271a#d0f166645fad45d2de65921cf14e021d85aa271a"
 dependencies = [
  "bitflags",
  "cfg-if",

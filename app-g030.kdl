@@ -16,7 +16,7 @@ kernel {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "kernel-generic-stm32g030"
-        rev "f6164652d1173caea2696515bed6177137319dd1"
+        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
@@ -29,7 +29,7 @@ task "super" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "minisuper"
-        rev "f6164652d1173caea2696515bed6177137319dd1"
+        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
     }
     priority 0
 
@@ -44,7 +44,7 @@ task "sys" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "drv-stm32g0-sys"
-        rev "9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
     }
     stack-size 256
     priority 1
@@ -68,7 +68,7 @@ task "ping" {
     uses-task "pong"
     uses-task "sys"
 
-    notification "timer"
+    notification "timer-ping"
 }
 
 task "blinky" {
@@ -77,16 +77,35 @@ task "blinky" {
     priority 3
     uses-task "sys"
 
-    notification "timer"
+    notification "timer-blinky"
 }
 
 task "display" {
-    workspace-crate "display"
+   workspace-crate "display"
     stack-size 256
     priority 3
     uses-task "sys"
 
-    notification "timer"
+    notification "timer-display"
+}
+
+task "echo" {
+    workspace-crate "uart-echo"
+    stack-size 256
+    priority 2
+    features "chip-stm32g030k8"
+    uses-task "sys"
+    uses-peripheral "usart2" {
+        irq "irq" "usart-irq"
+    }
+    config {
+        uart-clock-hz 16_000_000
+        baud-rate 9_600
+        pins {
+            - name="A2" af=1
+            - name="A3" af=1
+        }
+    }
 }
 
 // Idle task. Every application needs one, few applications want to write their
@@ -95,8 +114,10 @@ task "idle" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "idle"
-        rev "9c8132fd8f5e6a9462dc818904b5b76df9938e91"
+        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
     }
     stack-size 32
     priority 4
+    // This makes Humility work a _lot_ better.
+    features "insomniac"
 }

@@ -14,7 +14,7 @@ use pong_api::Pong;
 fn main() -> ! {
     // Create a client for the Sys driver and make our LED pin an output.
     let sys = Sys::from(SLOTS.sys);
-    sys.set_pin_output(Port::C, 6);
+    sys.set_pin_output(Port::C, 14); // RED led
 
     // Create a client for the Pong task.
     let pong = Pong::from(SLOTS.pong);
@@ -26,13 +26,13 @@ fn main() -> ! {
     let mut send_count = 0;
 
     loop {
-        userlib::sys_set_timer(Some(next_send), hubris_notifications::TIMER);
+        userlib::sys_set_timer(Some(next_send), hubris_notifications::TIMER_PING);
 
         // The proper thing to do, when waiting for a timer, is to sleep waiting
         // for notifications _and then check the time._ Otherwise other tasks
         // can wake you up by posting.
         loop {
-            userlib::sys_recv_notification(hubris_notifications::TIMER);
+            userlib::sys_recv_notification(hubris_notifications::TIMER_PING);
             let now = userlib::sys_get_timer().now;
             if now >= next_send {
                 next_send += INTERVAL;
@@ -47,7 +47,7 @@ fn main() -> ! {
         // Arrange to blink the LED by toggling it every 100 sends.
         if send_count == 100 {
             send_count = 0;
-            sys.toggle_pin(Port::C, 6);
+            sys.toggle_pin(Port::C, 14);
         }
     }
 }

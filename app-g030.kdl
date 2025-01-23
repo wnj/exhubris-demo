@@ -16,11 +16,12 @@ kernel {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "kernel-generic-stm32g030"
-        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
+        rev "f6e94156771bc4a62e914d87dbdaee1d9169e2be"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
     stack-size 544
+    features "clock-64mhz-hsi16"
 }
 
 // Supervisor task. Every nontrivial application needs one. The exhubris
@@ -29,7 +30,7 @@ task "super" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "minisuper"
-        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
+        rev "f6e94156771bc4a62e914d87dbdaee1d9169e2be"
     }
     priority 0
 
@@ -43,8 +44,8 @@ task "super" {
 task "sys" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
-        package "drv-stm32g0-sys"
-        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
+        package "drv-stm32xx-sys"
+        rev "f6e94156771bc4a62e914d87dbdaee1d9169e2be"
     }
     stack-size 256
     priority 1
@@ -68,7 +69,7 @@ task "ping" {
     uses-task "pong"
     uses-task "sys"
 
-    notification "timer-ping"
+    notification "timer"
 }
 
 task "blinky" {
@@ -99,8 +100,8 @@ task "echo" {
         irq "irq" "usart-irq"
     }
     config {
-        uart-clock-hz 16_000_000
-        baud-rate 9_600
+        uart-clock-hz 64_000_000
+        baud-rate 115200
         pins {
             - name="A2" af=1
             - name="A3" af=1
@@ -114,7 +115,7 @@ task "idle" {
     git-crate {
         repo "https://github.com/wnj/exhubris/"
         package "idle"
-        rev "d0f166645fad45d2de65921cf14e021d85aa271a"
+        rev "f6e94156771bc4a62e914d87dbdaee1d9169e2be"
     }
     stack-size 32
     priority 4

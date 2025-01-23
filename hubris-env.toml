@@ -2,5 +2,5 @@
 
 [system]
 source = "git"
-repo = "https://github.com/cbiffle/exhubris"
-rev = "cae47f13844a080f8fac1bfae0d0a72176a90975"
+repo = "https://github.com/wnj/exhubris"
+rev = "f6e94156771bc4a62e914d87dbdaee1d9169e2be"

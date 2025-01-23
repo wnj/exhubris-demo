@@ -8,9 +8,9 @@
 #![no_std]
 #![no_main]
 
-use userlib as _;
+use drv_stm32xx_sys_api::{PeripheralName, Stm32Sys as Sys};
 use hubris_task_slots::SLOTS;
-use drv_stm32g0_sys_api::{Stm32G0Sys as Sys, PeripheralName};
+use userlib as _;
 
 /// Counter for viewing in the debugger.
 #[no_mangle]

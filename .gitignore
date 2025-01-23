@@ -3,3 +3,4 @@
 *.hex
 *.zip
 gdbconfig
+hubris.core.*

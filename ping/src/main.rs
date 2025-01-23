@@ -6,8 +6,8 @@
 #![no_std]
 #![no_main]
 
+use drv_stm32xx_sys_api::{Port, Stm32Sys as Sys};
 use hubris_task_slots::SLOTS;
-use drv_stm32g0_sys_api::{Stm32G0Sys as Sys, Port};
 use pong_api::Pong;
 
 #[export_name = "main"]
@@ -26,13 +26,13 @@ fn main() -> ! {
     let mut send_count = 0;
 
     loop {
-        userlib::sys_set_timer(Some(next_send), hubris_notifications::TIMER_PING);
+        userlib::sys_set_timer(Some(next_send), hubris_notifications::TIMER);
 
         // The proper thing to do, when waiting for a timer, is to sleep waiting
         // for notifications _and then check the time._ Otherwise other tasks
         // can wake you up by posting.
         loop {
-            userlib::sys_recv_notification(hubris_notifications::TIMER_PING);
+            userlib::sys_recv_notification(hubris_notifications::TIMER);
             let now = userlib::sys_get_timer().now;
             if now >= next_send {
                 next_send += INTERVAL;

@@ -14,7 +14,7 @@ stm32-metapac = { version = "15.0.0" }
 userlib = { workspace = true, features = ["no-panic"] }
 hubris-task-slots.workspace = true
 hubris-notifications.workspace = true
-drv-stm32g0-sys-api.workspace = true
+drv-stm32xx-sys-api.workspace = true
 
 [build-dependencies]
 # hubris-build-util = { version = "0.1.0", path = "../../sys/build-util" }

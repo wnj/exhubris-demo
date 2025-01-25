@@ -16,7 +16,7 @@ kernel {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "kernel-generic-stm32g031"
-        rev "4338a23d051ed310515fd0e1dbaff060a8f9042b"
+        rev "696ecfe9197a27712a7f65deb901274f5553370d"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
@@ -29,7 +29,7 @@ task "super" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "minisuper"
-        rev "4338a23d051ed310515fd0e1dbaff060a8f9042b"
+        rev "696ecfe9197a27712a7f65deb901274f5553370d"
     }
     priority 0
 
@@ -43,14 +43,16 @@ task "super" {
 task "sys" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
-        package "drv-stm32g0-sys"
-        rev "4338a23d051ed310515fd0e1dbaff060a8f9042b"
+        package "drv-stm32xx-sys"
+        rev "696ecfe9197a27712a7f65deb901274f5553370d"
     }
     stack-size 256
     priority 1
-    features "chip-stm32g031k8"
     uses-peripheral "rcc"
     uses-peripheral "gpios"
+
+    // TODO: auto-features currently aren't implemented for git crates
+    features "chip-stm32g031k8"
 }
 
 // IPC server. This is the only code that actually lives in this repo.
@@ -77,7 +79,7 @@ task "idle" {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
         package "idle"
-        rev "4338a23d051ed310515fd0e1dbaff060a8f9042b"
+        rev "696ecfe9197a27712a7f65deb901274f5553370d"
     }
     stack-size 32
     priority 4

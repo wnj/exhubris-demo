@@ -486,9 +486,9 @@ dependencies = [
 ]
 
 [[package]]
-name = "drv-stm32g0-sys-api"
+name = "drv-stm32xx-sys-api"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=4338a23d051ed310515fd0e1dbaff060a8f9042b#4338a23d051ed310515fd0e1dbaff060a8f9042b"
+source = "git+https://github.com/cbiffle/exhubris?rev=696ecfe9197a27712a7f65deb901274f5553370d#696ecfe9197a27712a7f65deb901274f5553370d"
 dependencies = [
  "hubpack",
  "hubris-build",
@@ -642,7 +642,7 @@ dependencies = [
 [[package]]
 name = "hubris-build"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=4338a23d051ed310515fd0e1dbaff060a8f9042b#4338a23d051ed310515fd0e1dbaff060a8f9042b"
+source = "git+https://github.com/cbiffle/exhubris?rev=696ecfe9197a27712a7f65deb901274f5553370d#696ecfe9197a27712a7f65deb901274f5553370d"
 dependencies = [
  "blake3",
  "build-kconfig",
@@ -678,7 +678,7 @@ dependencies = [
 [[package]]
 name = "hubris-notifications"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=4338a23d051ed310515fd0e1dbaff060a8f9042b#4338a23d051ed310515fd0e1dbaff060a8f9042b"
+source = "git+https://github.com/cbiffle/exhubris?rev=696ecfe9197a27712a7f65deb901274f5553370d#696ecfe9197a27712a7f65deb901274f5553370d"
 dependencies = [
  "convert_case",
  "ron",
@@ -688,7 +688,7 @@ dependencies = [
 [[package]]
 name = "hubris-region-alloc"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=4338a23d051ed310515fd0e1dbaff060a8f9042b#4338a23d051ed310515fd0e1dbaff060a8f9042b"
+source = "git+https://github.com/cbiffle/exhubris?rev=696ecfe9197a27712a7f65deb901274f5553370d#696ecfe9197a27712a7f65deb901274f5553370d"
 dependencies = [
  "serde",
 ]
@@ -696,7 +696,7 @@ dependencies = [
 [[package]]
 name = "hubris-task-slots"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=4338a23d051ed310515fd0e1dbaff060a8f9042b#4338a23d051ed310515fd0e1dbaff060a8f9042b"
+source = "git+https://github.com/cbiffle/exhubris?rev=696ecfe9197a27712a7f65deb901274f5553370d#696ecfe9197a27712a7f65deb901274f5553370d"
 dependencies = [
  "ron",
  "userlib",
@@ -705,7 +705,7 @@ dependencies = [
 [[package]]
 name = "idyll_runtime"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=4338a23d051ed310515fd0e1dbaff060a8f9042b#4338a23d051ed310515fd0e1dbaff060a8f9042b"
+source = "git+https://github.com/cbiffle/exhubris?rev=696ecfe9197a27712a7f65deb901274f5553370d#696ecfe9197a27712a7f65deb901274f5553370d"
 dependencies = [
  "userlib",
  "zerocopy 0.8.13",
@@ -992,7 +992,7 @@ dependencies = [
 name = "ping"
 version = "0.1.0"
 dependencies = [
- "drv-stm32g0-sys-api",
+ "drv-stm32xx-sys-api",
  "hubris-notifications",
  "hubris-task-slots",
  "pong-api",
@@ -1618,7 +1618,7 @@ checksum = "1fc81956842c57dac11422a97c3b8195a1ff727f06e85c84ed2e8aa277c9a0fd"
 [[package]]
 name = "userlib"
 version = "0.1.0"
-source = "git+https://github.com/cbiffle/exhubris?rev=4338a23d051ed310515fd0e1dbaff060a8f9042b#4338a23d051ed310515fd0e1dbaff060a8f9042b"
+source = "git+https://github.com/cbiffle/exhubris?rev=696ecfe9197a27712a7f65deb901274f5553370d#696ecfe9197a27712a7f65deb901274f5553370d"
 dependencies = [
  "bitflags",
  "cfg-if",

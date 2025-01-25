@@ -7,7 +7,7 @@
 #![no_main]
 
 use hubris_task_slots::SLOTS;
-use drv_stm32g0_sys_api::{Stm32G0Sys as Sys, Port};
+use drv_stm32xx_sys_api::{Stm32Sys as Sys, Port};
 use pong_api::Pong;
 
 #[export_name = "main"]

@@ -2,12 +2,12 @@
 
 // App name is used for output files etc. It must be the first non-blank
 // non-comment line in the file.
-app "demo"
+app demo
 
 // Currently the board information is inlined. It would be nice to refer to an
 // external file, like we already do for chip definitions.
-board "nucleo-g031k8" {
-    chip "stm32g031k8"
+board nucleo-g031k8 {
+    chip "proj:chips/stm32g031k8.kdl"
 }
 
 // Instructions for building the kernel.
@@ -15,8 +15,8 @@ kernel {
     // We'll pull in a kernel definition from exhubris's git repo.
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
-        package "kernel-generic-stm32g031"
-        rev "696ecfe9197a27712a7f65deb901274f5553370d"
+        package kernel-generic-stm32g031
+        rev "69d2f5ca8017fc3aaf692eae9455ac9fcd883173"
     }
     // The kernel itself should provide this information eventually, but for now
     // we have to state it:
@@ -25,11 +25,11 @@ kernel {
 
 // Supervisor task. Every nontrivial application needs one. The exhubris
 // minisuper implementation is good for most simple systems.
-task "super" {
+task super {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
-        package "minisuper"
-        rev "696ecfe9197a27712a7f65deb901274f5553370d"
+        package minisuper
+        rev "69d2f5ca8017fc3aaf692eae9455ac9fcd883173"
     }
     priority 0
 
@@ -40,49 +40,49 @@ task "super" {
 
 // System peripheral sharing for G0. This lets other tasks conveniently access
 // GPIO and clock trees.
-task "sys" {
+task sys {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
-        package "drv-stm32xx-sys"
-        rev "696ecfe9197a27712a7f65deb901274f5553370d"
+        package drv-stm32xx-sys
+        rev "69d2f5ca8017fc3aaf692eae9455ac9fcd883173"
     }
     stack-size 256
     priority 1
-    uses-peripheral "rcc"
-    uses-peripheral "gpios"
+    uses-peripheral rcc
+    uses-peripheral gpios
 
     // TODO: auto-features currently aren't implemented for git crates
-    features "chip-stm32g031k8"
+    features chip-stm32g031k8
 }
 
 // IPC server. This is the only code that actually lives in this repo.
-task "pong" {
-    workspace-crate "pong"
+task pong {
+    workspace-crate pong
     stack-size 160
     priority 2
 }
 
 // IPC generator.
-task "ping" {
-    workspace-crate "ping"
+task ping {
+    workspace-crate ping
     stack-size 256
     priority 3
-    uses-task "pong"
-    uses-task "sys"
+    uses-task pong
+    uses-task sys
 
-    notification "timer"
+    notification timer
 }
 
 // Idle task. Every application needs one, few applications want to write their
 // own. We pull in a standard one from git:
-task "idle" {
+task idle {
     git-crate {
         repo "https://github.com/cbiffle/exhubris/"
-        package "idle"
-        rev "696ecfe9197a27712a7f65deb901274f5553370d"
+        package idle
+        rev "69d2f5ca8017fc3aaf692eae9455ac9fcd883173"
     }
     stack-size 32
     priority 4
     // This makes Humility work a _lot_ better.
-    features "insomniac"
+    features insomniac
 }
